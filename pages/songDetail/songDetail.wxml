@@ -1,0 +1,41 @@
+<view class="songDetailContainer">
+  <view class="author">{{song.ar[0].name}}</view>
+  <view class="circle"></view>
+  <image class="needle {{isPlay && 'needleRotate'}}" src="/static/images/song/needle.png"></image>
+
+  <view class="discContainer {{isPlay && 'discAnimation'}}">
+    <image class="disc" src="/static/images/song/disc.png"></image>
+    <image class="musicImg" src="{{song.al.picUrl}}"></image>
+  </view>
+
+  <!-- 进度条控制区域 -->
+  <view class="progressControl">
+    <text>{{currentTime}}</text>
+    <!-- 总进度条 -->
+     <view class="barControl" bindtap="changeSchedule">
+       <!-- 实时进度条 -->
+      <view class="audio-currentTime-Bar" style="width:{{currentTimeWith+'rpx'}}" >
+        <!-- 小圆球 -->
+        <view class="audio-circle"></view>
+      </view>
+    </view>
+     
+    <text>{{durationTime}}</text>
+  </view>
+
+   <!-- 底部控制播放区域 -->
+  <view class="musicControl"> 
+    <!-- 通过bofangType控制音乐播放模式 -->
+    <text wx:if="{{bofangType=='0'}}" class="iconfont icon-iconsMusicyemianbofangmoshiRepeat" bindtap="handleSwitchType" data-type="0"></text>
+    <text wx:elif="{{bofangType=='1'}}" class="iconfont icon-iconsMusicyemianbofangmoshiShuffle" bindtap="handleSwitchType" data-type="1"></text>
+    <text wx:elif="{{bofangType=='2'}}" class="iconfont icon-iconsMusicyemianbofangmoshiAlrepeatOne" bindtap="handleSwitchType" data-type="2"></text>
+
+    <text class="iconfont icon-shangyishou" id="pre" bindtap="handleSwitch"></text>
+
+    <text class="iconfont {{isPlay?'icon-zanting': 'icon-bofang'}} big" bindtap="handleMusicPlay"></text>
+
+    <text class="iconfont icon-next" id="next" bindtap="handleSwitch"></text>
+
+    <text class="iconfont icon-iconsMusicyemianbofangmoshiPlayList"></text>
+  </view>
+</view>
